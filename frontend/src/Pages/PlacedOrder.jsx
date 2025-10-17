@@ -147,7 +147,7 @@ const PlacedOrder = () => {
                 </div>
             </div>
             <div className='w-full text-end mt-8'>
-                <button type='submit' className='bg-black text-white px-16 py-3 text-sm hover:bg-gray-900 active:scale-95 shadow-md hover:shadow-lg cursor-pointer'>PLACE ORDER</button>
+                <button type='submit' className='bg-black text-white px-16 py-3 text-sm hover:bg-gray-900 active:scale-95 shadow-md hover:shadow-lg cursor-pointer rounded-md'>PLACE ORDER</button>
             </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const Footer = () => {
     <div>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 test-sm'>
         <div>
-            <img src={assets.newmainlogo2} className='mb-5 w-32' alt="footerLogo" />
+            <img src={assets.logo2} className='mb-5 w-40' alt="footerLogo" />
             <p className='w-full md:w-2/3 text-gray-600'>
                 ShoppyGlobe is your trusted destination for the latest trends and quality products.
                 We’re committed to bringing you the best shopping experience at great value.

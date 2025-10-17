@@ -5,6 +5,7 @@ import { useState, useContext } from 'react';
 import { useEffect } from 'react';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+import { toast } from 'react-toastify';
 
 const Product = () => {
 
@@ -26,7 +27,7 @@ const Product = () => {
 
     useEffect(()=>{
         fetchProductData();
-    },[productId]);
+    },[productId, products]);
 
   return productData ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
@@ -67,7 +68,7 @@ const Product = () => {
                     ))}
                 </div>
             </div>
-            <button onClick={()=>addToCart(productData._id, size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+            <button onClick={()=>{addToCart(productData._id, size); toast.success("Added to the Cart!")}} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700 hover:bg-gray-800 cursor-pointer rounded-md transition-colors duration-200'>ADD TO CART</button>
             <hr className='mt-8 sm:w-4/5 border border-gray-400' />
             <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
                 <p>100% original product.</p>

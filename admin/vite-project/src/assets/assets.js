@@ -1,10 +1,11 @@
-import logo from './logo.png'
+import logo from './logofixed.jpg'
 import add_icon from './add_icon.png'
 import order_icon from './order_icon.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.svg'
 import logomain from './logomain.png'
 import mainlogo from './mainlogo.jpg'
+
 
 export const assets = {
     logo,
