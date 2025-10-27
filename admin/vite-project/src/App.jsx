@@ -9,7 +9,7 @@ import Login from './components/Login.jsx'
 import { useState, useEffect } from 'react'
 import { ToastContainer} from 'react-toastify';
 
-export const currency = "$";
+export const currency = "₹";
 
 const App = () => {
   const [token,setToken] = useState(localStorage.getItem("token")? localStorage.getItem("token"):"");

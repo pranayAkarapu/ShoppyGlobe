@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { currency } from "../App";
 
 
-const List = ({token}) => {
+const List = ({ token }) => {
   const queryClient = useQueryClient();
 
   const ProductList = async () => {
@@ -36,7 +36,7 @@ const List = ({token}) => {
 
   useEffect(() => {
     let toastId;
-    if (isLoading || isFetching) {
+    if (isLoading) {
       toastId = toast.loading("Fetching products... ⏳", {
         position: "top-center",
       });
@@ -53,33 +53,64 @@ const List = ({token}) => {
     return <p className="text-red-500">Error fetching products</p>;
   }
 
-  const removeProduct = async(id)=>{
-    const response = await API_URL.delete("/api/product/remove", {data:{id}, headers:{"token": token}})
+  const removeProduct = async (id) => {
+    const response = await API_URL.delete("/api/product/remove", { data: { id }, headers: { "token": token } })
     return response.data;
   }
 
   const RemoveMutation = useMutation({
     mutationFn: removeProduct,
-    onSuccess: (data)=>{
-      if(data.success){
+    onSuccess: (data) => {
+      if (data.success) {
         toast.success(data.message)
         queryClient.invalidateQueries({ queryKey: ["list"] })
-      }else{
+      } else {
         toast.error(data.message)
       }
     },
-    onError:(error)=>{
+    onError: (error) => {
       console.log(error);
       toast.error(error.message)
     }
   });
 
-  const handleRemove = (id)=>{
-    RemoveMutation.mutate(id);
+  const handleRemove = (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      RemoveMutation.mutate(id);
+    }
   }
 
   return (
-    <div className="p-6 bg-gray-900 min-h-screen text-white">
+    <>
+      <p className="mb-2">All Products List</p>
+      <div className="flex flex-col gap-2">
+        <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-2 px-2 border bg-gray-100 text-sm">
+          <b>Image</b>
+          <b>Name</b>
+          <b>Category</b>
+          <b>Price</b>
+          <b className="text-center">Action</b>
+        </div>
+        {/* Product List */}
+        {
+          list.map((item, index) => (
+            <div className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border border-gray-300 text-sm" key={index}>
+              <img src={item.image[0]} alt="" className="w-12" />
+              <p>{item.name}</p>
+              <p className="mx-6">{item.category}</p>
+              <p className="">{currency}{item.price}</p>
+              <p onClick={() => handleRemove(item._id)} className="px-6 mx-6 text-white  hover:bg-gray-800 rounded-md md:text-center cursor-pointer text-lg bg-black w-24" >Delete</p>
+            </div>
+          ))
+        }
+      </div>
+    </>
+  );
+};
+
+export default List;
+
+{/*<div className="p-6 bg-gray-900 min-h-screen text-white">
       <h1 className="text-2xl font-bold mb-6 text-center">
         All Products List
       </h1>
@@ -138,9 +169,4 @@ const List = ({token}) => {
           </tbody>
         </table>
       </div>
-    </div>
-  );
-};
-
-export default List;
-
+    </div>*/}

@@ -79,12 +79,46 @@ export default Navbar*/
 
 import React from 'react'
 import { assets } from '../assets/assets'
+import { toast } from 'react-toastify';
 
-const Navbar = () => {
+const Navbar = ({setToken}) => {
+
+  const handleLogout = () => {
+  toast.info(
+    <div className="space-y-2">
+      <p>Are you sure you want to logout?</p>
+      <div className="flex gap-3">
+        <button
+          onClick={() => {
+            setToken("");   
+            toast.dismiss(); 
+            toast.success("Logged out successfully!");
+          }}
+          className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
+        >
+          Yes
+        </button>
+        <button
+          onClick={() => toast.dismiss()}
+          className="bg-gray-300 hover:bg-gray-400 text-black px-3 py-1 rounded text-sm"
+        >
+          No
+        </button>
+      </div>
+    </div>,
+    {
+      autoClose: false,
+      closeOnClick: false,
+      draggable: false,
+      position: "top-center",
+    }
+  );
+  };
+
   return (
     <div className='flex items-center py-2 px-[4%] justify-between'>
       <img src={assets.logo} alt="" className='w-40'/>
-      <button className='bg-gray-600 text-white px-5 py-2 sm:py-2 rounded-full text-xs sm:text-sm'>Logout</button>
+      <button onClick={handleLogout} className='bg-gray-600 text-white px-5 py-2 sm:py-2 rounded-full text-xs sm:text-sm cursor-pointer'>Logout</button>
     </div>
   )
 }
