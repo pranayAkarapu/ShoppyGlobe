@@ -1,5 +1,5 @@
 
-import React from 'react'
+/*import React from 'react'
 import { assets } from "../assets/assets.js"
 import {toast} from "react-toastify"
 
@@ -41,8 +41,7 @@ const Navbar = ({setToken}) => {
     <nav className="flex justify-between items-center 
                     px-4 sm:px-6 lg:px-8 py-3 sm:py-4 
                     bg-gray-900 shadow-md border-b border-gray-800">
-      
-      {/* Logo + Title */}
+ 
       <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
         <img 
           src={assets.logo} 
@@ -60,7 +59,6 @@ const Navbar = ({setToken}) => {
         </div>
       </div>
 
-      {/* Logout Button */}
       <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 
                          sm:px-4 sm:py-2 lg:px-6 lg:py-2.5 
                          rounded text-sm sm:text-base font-medium 
@@ -76,8 +74,21 @@ const Navbar = ({setToken}) => {
   )
 }
 
+export default Navbar*/
+
+
+import React from 'react'
+import { assets } from '../assets/assets'
+
+const Navbar = () => {
+  return (
+    <div className='flex items-center py-2 px-[4%] justify-between'>
+      <img src={assets.logo} alt="" className='w-40'/>
+      <button className='bg-gray-600 text-white px-5 py-2 sm:py-2 rounded-full text-xs sm:text-sm'>Logout</button>
+    </div>
+  )
+}
+
 export default Navbar
-
-
 
 
