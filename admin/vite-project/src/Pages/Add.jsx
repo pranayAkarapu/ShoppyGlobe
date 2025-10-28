@@ -95,7 +95,7 @@ const Add = ({ token }) => {
             <div key={i} className="">
               <label htmlFor={`image${i}`}>
                 <img
-                  className='w-20 height-20 object-cover cursor-pointer'
+                  className='w-20 h-26 object-cover cursor-pointer'
                   src={img ? URL.createObjectURL(img) : assets.upload_area}
                   alt=""
                 />
@@ -112,7 +112,7 @@ const Add = ({ token }) => {
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(i)}
-                  className="absolute top-1 right-1 cursor-pointer bg-red-600 text-white rounded-full p-1 text-xs hover:bg-red-700"
+                  className="absolute top-31 mx-16 cursor-pointer bg-red-600 text-white rounded-full p-1 text-xs hover:bg-red-700"
                 >
                   X
                 </button>
